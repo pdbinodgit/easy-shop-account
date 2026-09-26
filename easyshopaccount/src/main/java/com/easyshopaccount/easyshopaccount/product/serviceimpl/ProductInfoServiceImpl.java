@@ -22,12 +22,14 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     public ProductInfoDto saveProduct(ProductInfoDto dto) {
         Random random = new Random();
         int number = random.nextInt(1000);
-        String prefix= dto.getProductName().replaceAll("\\+","").substring(0,2).toUpperCase();
-        String productCode=prefix+"_"+number;
+        String prefix= dto.getProductName().replaceAll("\\+"," ").substring(0,2).toUpperCase();
+        String productCode=prefix+"-"+number;
         ProductInfo info=dtoToEntity(dto);
         info.setProductCode(productCode);
-        productInfoRepository.save(info);
-        return saveProduct(entityToDto(info));
+
+        ProductInfo savedInfo = productInfoRepository.save(info);
+        return entityToDto(savedInfo);
+
     }
 
     @Override
@@ -60,6 +62,7 @@ public class ProductInfoServiceImpl implements ProductInfoService {
             info.get().setQuantity(dto.getQuantity());
             info.get().setPrice(dto.getPrice());
         }
+        productInfoRepository.save(info.get());
         return entityToDto(info.get());
     }
 

@@ -19,8 +19,7 @@ public class ProductInfoController {
     @PostMapping("/saveProduct")
     public ESAResponse<?> saveProduct(@RequestBody ProductInfoDto dto){
         ProductInfoDto productInfoDto= productInfoService.saveProduct(dto);
-        ESAResponse<ProductInfoDto> response=new ESAResponse<>(HttpStatus.OK,"Product save successfully.",productInfoDto, LocalDateTime.now());
-        return response;
+        return new ESAResponse<>(HttpStatus.OK,"Product save successfully.",productInfoDto, LocalDateTime.now());
     }
     @GetMapping("/findAllProduct")
     public ESAResponse<?> getAllProducts(){
