@@ -1,31 +1,28 @@
 package com.easyshopaccount.easyshopaccount.customresponse;
 
+import org.springframework.http.HttpStatus;
+
 import java.time.LocalDateTime;
 
 public class ESAResponse <T>{
-    boolean success;
+    HttpStatus status;
     String message;
     T data;
     LocalDateTime timestamp;
 
-
-    public ESAResponse() {
-
-    }
-
-    public ESAResponse(boolean success, String message, T data, LocalDateTime timestamp) {
-        this.success = success;
+    public ESAResponse(HttpStatus status, String message, T data, LocalDateTime timestamp) {
+        this.status = status;
         this.message = message;
         this.data = data;
         this.timestamp = timestamp;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public HttpStatus getStatus() {
+        return status;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public void setStatus(HttpStatus status) {
+        this.status = status;
     }
 
     public String getMessage() {
