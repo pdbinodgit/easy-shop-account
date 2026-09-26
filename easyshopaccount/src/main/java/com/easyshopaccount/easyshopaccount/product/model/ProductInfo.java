@@ -1,4 +1,4 @@
-package com.easyshopaccount.easyshopaccount.sample.model;
+package com.easyshopaccount.easyshopaccount.product.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
