@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface VendorInfoRepository extends JpaRepository<VendorInfo,Long> {
     public Optional<VendorInfo> findByVendorCode(String code);
-    public Optional<VendorInfo> findByVendorName(String name);
-    public Optional<VendorInfo> findByVendorPhoneNumber(String phnNumber);
+    public Optional<VendorInfo> findByPhoneNumber(String phnNumber);
 }

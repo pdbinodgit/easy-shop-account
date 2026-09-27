@@ -54,7 +54,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
 
     @Override
     public VendorInfoDto findByVendorPhoneNumber(String number) {
-        Optional<VendorInfo> info=vendorInfoRepository.findByVendorPhoneNumber(number);
+        Optional<VendorInfo> info=vendorInfoRepository.findByPhoneNumber(number);
         return entityToDto(info.get());
     }
 
