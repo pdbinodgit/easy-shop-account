@@ -10,4 +10,5 @@ public interface VendorInfoService {
     public VendorInfoDto findById(long id);
     public VendorInfoDto findByVendorCode(String code);
     public VendorInfoDto findByVendorPhoneNumber(String number);
+    public VendorInfoDto updateVendor(long id, VendorInfoDto dto);
 }
