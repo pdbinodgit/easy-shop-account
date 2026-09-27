@@ -38,7 +38,7 @@ public class VendorInfoController {
         return new ESAResponse<>(HttpStatus.OK,"VendorInfo retrieve successfully.",vendorInfoService.findByVendorCode(code), LocalDateTime.now());
     }
     @GetMapping("/findByVendorPhoneNumber/{number}")
-    public ESAResponse<?> findByVendorPhoneNumber(String number){
+    public ESAResponse<?> findByVendorPhoneNumber(@PathVariable String number){
         return new ESAResponse<>(HttpStatus.OK,"VendorInfo retrieve successfully.",vendorInfoService.findByVendorPhoneNumber(number), LocalDateTime.now());
 
     }
