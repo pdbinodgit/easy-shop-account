@@ -1,10 +1,12 @@
 package com.easyshopaccount.easyshopaccount.product.serviceimpl;
 
+import com.easyshopaccount.easyshopaccount.customexception.ESAException;
 import com.easyshopaccount.easyshopaccount.product.dto.ProductInfoDto;
 import com.easyshopaccount.easyshopaccount.product.model.ProductInfo;
 import com.easyshopaccount.easyshopaccount.product.repository.ProductInfoRepository;
 import com.easyshopaccount.easyshopaccount.product.service.ProductInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +28,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
         String productCode=prefix+"-"+number;
         ProductInfo info=dtoToEntity(dto);
         info.setProductCode(productCode);
-
+        Optional<ProductInfo> productInfo=productInfoRepository.findByProductCode(productCode);
+        if (productInfo.isPresent()){
+            throw new ESAException("Product code already exist.", HttpStatus.BAD_REQUEST,400);
+        }
         ProductInfo savedInfo = productInfoRepository.save(info);
         return entityToDto(savedInfo);
 
