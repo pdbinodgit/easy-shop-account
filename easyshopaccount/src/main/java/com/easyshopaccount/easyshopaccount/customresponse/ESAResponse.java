@@ -1,9 +1,14 @@
 package com.easyshopaccount.easyshopaccount.customresponse;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
-
+@Getter
+@Setter
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ESAResponse <T>{
     HttpStatus status;
     String message;
@@ -14,6 +19,12 @@ public class ESAResponse <T>{
         this.status = status;
         this.message = message;
         this.data = data;
+        this.timestamp = timestamp;
+    }
+
+    public ESAResponse(HttpStatus status, String message, LocalDateTime timestamp) {
+        this.status = status;
+        this.message = message;
         this.timestamp = timestamp;
     }
 
