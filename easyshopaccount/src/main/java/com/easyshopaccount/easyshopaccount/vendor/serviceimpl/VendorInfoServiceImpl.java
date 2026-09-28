@@ -73,6 +73,9 @@ public class VendorInfoServiceImpl implements VendorInfoService {
     @Override
     public VendorInfoDto findByVendorPhoneNumber(String number) {
         Optional<VendorInfo> info=vendorInfoRepository.findByPhoneNumber(number);
+        if (!info.isPresent()){
+            throw new ESAException("Vendor phone does not exist.",HttpStatus.BAD_REQUEST,400);
+        }
         return entityToDto(info.get());
     }
 
