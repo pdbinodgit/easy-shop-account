@@ -1,10 +1,12 @@
 package com.easyshopaccount.easyshopaccount.vendor.serviceimpl;
 
+import com.easyshopaccount.easyshopaccount.customexception.ESAException;
 import com.easyshopaccount.easyshopaccount.vendor.dto.VendorInfoDto;
 import com.easyshopaccount.easyshopaccount.vendor.model.VendorInfo;
 import com.easyshopaccount.easyshopaccount.vendor.repository.VendorInfoRepository;
 import com.easyshopaccount.easyshopaccount.vendor.service.VendorInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +28,19 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         String vendorCode=prefix+"-"+number;
         VendorInfo info=dtoToEntity(dto);
         info.setVendorCode(vendorCode);
+        Optional<VendorInfo> vendorInfo=vendorInfoRepository.findByVendorCode(vendorCode);
+        Optional<VendorInfo> vendorInfo1=vendorInfoRepository.findByPhoneNumber(dto.getPhoneNumber());
+        Optional<VendorInfo> vendorInfo2=vendorInfoRepository.findByVatNumberOrTaxNumber(dto.getVatNumberOrTaxNumber());
+        if (vendorInfo.isPresent()){
+            throw new ESAException("Vendor code already exist", HttpStatus.BAD_REQUEST,400);
+        }
+        if (vendorInfo1.isPresent()){
+            throw new ESAException("Vendor phone already exist", HttpStatus.BAD_REQUEST,400);
+        }
+        if (vendorInfo2.isPresent()){
+            throw new ESAException("Vendor Vat Number Or Tax Number already exist", HttpStatus.BAD_REQUEST,400);
+        }
+
         VendorInfo saveInfo=vendorInfoRepository.save(info);
         return entityToDto(saveInfo);
     }
