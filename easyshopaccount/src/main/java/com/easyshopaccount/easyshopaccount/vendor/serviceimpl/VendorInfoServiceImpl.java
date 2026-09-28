@@ -64,6 +64,9 @@ public class VendorInfoServiceImpl implements VendorInfoService {
     @Override
     public VendorInfoDto findByVendorCode(String code) {
         Optional<VendorInfo> info=vendorInfoRepository.findByVendorCode(code);
+        if (!info.isPresent()){
+            throw new ESAException("Vendor code does not exist.",HttpStatus.BAD_REQUEST,400);
+        }
         return entityToDto(info.get());
     }
 
