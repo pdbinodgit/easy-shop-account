@@ -20,6 +20,6 @@ public class VendorInfo {
     private long id;
     private String vendorName;
     private String vendorCode;
-    private String vatNumberOrTaxNumber;
+    private String vatNumber;
     private String phoneNumber;
 }

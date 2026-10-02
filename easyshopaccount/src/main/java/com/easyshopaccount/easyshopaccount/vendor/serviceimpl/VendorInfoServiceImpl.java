@@ -30,7 +30,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         info.setVendorCode(vendorCode);
         Optional<VendorInfo> vendorInfo=vendorInfoRepository.findByVendorCode(vendorCode);
         Optional<VendorInfo> vendorInfo1=vendorInfoRepository.findByPhoneNumber(dto.getPhoneNumber());
-        Optional<VendorInfo> vendorInfo2=vendorInfoRepository.findByVatNumberOrTaxNumber(dto.getVatNumberOrTaxNumber());
+        Optional<VendorInfo> vendorInfo2=vendorInfoRepository.findByVatNumber(dto.getVatNumber());
         if (vendorInfo.isPresent()){
             throw new ESAException("Vendor code already exist", HttpStatus.BAD_REQUEST,400);
         }
@@ -85,7 +85,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         if (info.isPresent()){
             info.get().setVendorName(dto.getVendorName());
             info.get().setPhoneNumber(dto.getPhoneNumber());
-            info.get().setVatNumberOrTaxNumber(dto.getVatNumberOrTaxNumber());
+            info.get().setVatNumber(dto.getVatNumber());
         }
         vendorInfoRepository.save(info.get());
         return entityToDto(info.get());
@@ -97,7 +97,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         info.setVendorCode(dto.getVendorCode());
         info.setVendorName(dto.getVendorName());
         info.setPhoneNumber(dto.getPhoneNumber());
-        info.setVatNumberOrTaxNumber(dto.getVatNumberOrTaxNumber());
+        info.setVatNumber(dto.getVatNumber());
         return info;
     }
 
@@ -107,7 +107,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         dto.setVendorCode(info.getVendorCode());
         dto.setVendorName(info.getVendorName());
         dto.setPhoneNumber(info.getPhoneNumber());
-        dto.setVatNumberOrTaxNumber(info.getVatNumberOrTaxNumber());
+        dto.setVatNumber(info.getVatNumber());
         return dto;
     }
 }
