@@ -31,6 +31,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         Optional<VendorInfo> vendorInfo=vendorInfoRepository.findByVendorCode(vendorCode);
         Optional<VendorInfo> vendorInfo1=vendorInfoRepository.findByPhoneNumber(dto.getPhoneNumber());
         Optional<VendorInfo> vendorInfo2=vendorInfoRepository.findByVatNumber(dto.getVatNumber());
+        Optional<VendorInfo> vendorInfo3=vendorInfoRepository.findByPanNumber(dto.getPanNumber());
         if (vendorInfo.isPresent()){
             throw new ESAException("Vendor code already exist", HttpStatus.BAD_REQUEST,400);
         }
@@ -38,6 +39,9 @@ public class VendorInfoServiceImpl implements VendorInfoService {
             throw new ESAException("Vendor phone already exist", HttpStatus.BAD_REQUEST,400);
         }
         if (vendorInfo2.isPresent()){
+            throw new ESAException("Vendor Vat Number Or Tax Number already exist", HttpStatus.BAD_REQUEST,400);
+        }
+        if (vendorInfo3.isPresent()){
             throw new ESAException("Vendor Vat Number Or Tax Number already exist", HttpStatus.BAD_REQUEST,400);
         }
 
@@ -98,6 +102,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         info.setVendorName(dto.getVendorName());
         info.setPhoneNumber(dto.getPhoneNumber());
         info.setVatNumber(dto.getVatNumber());
+        info.setPanNumber(dto.getPanNumber());
         return info;
     }
 
@@ -108,6 +113,7 @@ public class VendorInfoServiceImpl implements VendorInfoService {
         dto.setVendorName(info.getVendorName());
         dto.setPhoneNumber(info.getPhoneNumber());
         dto.setVatNumber(info.getVatNumber());
+        dto.setPanNumber(info.getPanNumber());
         return dto;
     }
 }

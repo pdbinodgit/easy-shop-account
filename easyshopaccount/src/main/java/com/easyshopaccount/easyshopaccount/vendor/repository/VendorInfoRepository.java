@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface VendorInfoRepository extends JpaRepository<VendorInfo,Long> {
     public Optional<VendorInfo> findByVendorCode(String code);
     public Optional<VendorInfo> findByPhoneNumber(String phnNumber);
-    public Optional<VendorInfo> findByVatNumber(String vatNumberOrTaxNumber);
+    public Optional<VendorInfo> findByVatNumber(String vatNumber);
+    public Optional<VendorInfo> findByPanNumber(String panNumber);
 }

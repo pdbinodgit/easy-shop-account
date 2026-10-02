@@ -21,5 +21,6 @@ public class VendorInfo {
     private String vendorName;
     private String vendorCode;
     private String vatNumber;
+    private String panNumber;
     private String phoneNumber;
 }
