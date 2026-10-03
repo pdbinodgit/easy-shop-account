@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 @Setter
 public class GoodReceiveNoteDto {
     private Long id;
+    private String GRNNumber;
     private ProductInfo productInfo;
     private VendorInfo vendorInfo;
     private Double quantity;

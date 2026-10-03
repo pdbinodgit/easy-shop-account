@@ -19,6 +19,7 @@ public class GoodReceiveNote {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String GRNNumber;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "product_info_id",referencedColumnName = "id")
     private ProductInfo productInfo;
