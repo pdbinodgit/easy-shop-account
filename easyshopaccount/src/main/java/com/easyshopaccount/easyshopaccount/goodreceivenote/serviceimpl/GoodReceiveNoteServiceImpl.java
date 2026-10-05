@@ -1,13 +1,16 @@
 package com.easyshopaccount.easyshopaccount.goodreceivenote.serviceimpl;
 
+import com.easyshopaccount.easyshopaccount.customexception.ESAException;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.dto.GoodReceiveNoteDto;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.model.GoodReceiveNote;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.repository.GoodReceiveNoteRepository;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.service.GoodReceiveNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
@@ -37,7 +40,11 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
 
     @Override
     public GoodReceiveNoteDto findById(long id) {
-        return null;
+        Optional<GoodReceiveNote> note=goodReceiveNoteRepository.findById(id);
+        if (!note.isPresent()){
+           throw new ESAException("Good Receive Note is not exist.", HttpStatus.BAD_REQUEST,400);
+        }
+        return entityToDto(note.get());
     }
 
     @Override
