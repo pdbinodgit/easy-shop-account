@@ -1,7 +1,6 @@
 package com.easyshopaccount.easyshopaccount.goodreceivenote.service;
 
 import com.easyshopaccount.easyshopaccount.goodreceivenote.dto.GoodReceiveNoteDto;
-import com.easyshopaccount.easyshopaccount.goodreceivenote.model.GoodReceiveNote;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
