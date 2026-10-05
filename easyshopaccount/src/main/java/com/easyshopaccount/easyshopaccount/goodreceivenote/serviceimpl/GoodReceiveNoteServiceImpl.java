@@ -49,7 +49,11 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
 
     @Override
     public GoodReceiveNoteDto findByGrnNumber(String grnNumber) {
-        return null;
+        Optional<GoodReceiveNote> optionalGoodReceiveNote=goodReceiveNoteRepository.findByGRNNumber(grnNumber);
+        if (!optionalGoodReceiveNote.isPresent()){
+            throw new ESAException("Good Receive note is not exist for this GRN Number",HttpStatus.BAD_REQUEST,400);
+        }
+        return entityToDto(optionalGoodReceiveNote.get());
     }
 
     @Override
