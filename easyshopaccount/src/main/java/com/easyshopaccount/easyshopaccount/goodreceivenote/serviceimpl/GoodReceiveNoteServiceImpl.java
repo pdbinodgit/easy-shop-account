@@ -6,6 +6,7 @@ import com.easyshopaccount.easyshopaccount.goodreceivenote.repository.GoodReceiv
 import com.easyshopaccount.easyshopaccount.goodreceivenote.service.GoodReceiveNoteService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,8 +26,13 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
     }
 
     @Override
-    public List<GoodReceiveNote> findAll() {
-        return List.of();
+    public List<GoodReceiveNoteDto> findAll() {
+        List<GoodReceiveNote> goodReceiveNoteList=goodReceiveNoteRepository.findAll();
+        List<GoodReceiveNoteDto> dtoList=new ArrayList<>();
+        for (GoodReceiveNote note:goodReceiveNoteList){
+            dtoList.add(entityToDto(note));
+        }
+        return dtoList;
     }
 
     @Override
@@ -35,8 +41,8 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
     }
 
     @Override
-    public List<GoodReceiveNote> findByGrnNumber(String grnNumber) {
-        return List.of();
+    public GoodReceiveNoteDto findByGrnNumber(String grnNumber) {
+        return null;
     }
 
     @Override

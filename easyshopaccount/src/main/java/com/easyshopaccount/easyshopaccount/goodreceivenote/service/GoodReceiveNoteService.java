@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public interface GoodReceiveNoteService {
     public GoodReceiveNoteDto save(GoodReceiveNoteDto dto);
-    public List<GoodReceiveNote> findAll();
+    public List<GoodReceiveNoteDto> findAll();
     public GoodReceiveNoteDto findById(long id);
-    public List<GoodReceiveNote> findByGrnNumber(String grnNumber);
+    public GoodReceiveNoteDto findByGrnNumber(String grnNumber);
     public GoodReceiveNoteDto update(GoodReceiveNoteDto dto,long id);
 
 }
