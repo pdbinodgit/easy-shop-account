@@ -7,6 +7,7 @@ import com.easyshopaccount.easyshopaccount.goodreceivenote.service.GoodReceiveNo
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Random;
 
 public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
    @Autowired
@@ -14,7 +15,13 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
 
     @Override
     public GoodReceiveNoteDto save(GoodReceiveNoteDto dto) {
-        return null;
+        Random random=new Random();
+        int number=random.nextInt(1000);
+        String grnNumber="GRN-"+number;
+        GoodReceiveNote goodReceiveNote=dtoToEntity(dto);
+        goodReceiveNote.setGRNNumber(grnNumber);
+       GoodReceiveNote saveNote = goodReceiveNoteRepository.save(goodReceiveNote);
+        return entityToDto(saveNote);
     }
 
     @Override
