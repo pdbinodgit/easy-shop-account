@@ -1,6 +1,5 @@
 package com.easyshopaccount.easyshopaccount.goodreceivenote.model;
 
-import com.easyshopaccount.easyshopaccount.product.model.ProductInfo;
 import com.easyshopaccount.easyshopaccount.vendor.model.VendorInfo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -21,11 +21,8 @@ public class GoodReceiveNote {
     private Long id;
     private String GRNNumber;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_info_id",referencedColumnName = "id")
-    private ProductInfo productInfo;
-    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "vendor_info_id",referencedColumnName = "id")
     private VendorInfo vendorInfo;
-    private Double quantity;
-    private BigDecimal price;
+    private BigDecimal totalAmount;
+    private LocalDate date;
 }

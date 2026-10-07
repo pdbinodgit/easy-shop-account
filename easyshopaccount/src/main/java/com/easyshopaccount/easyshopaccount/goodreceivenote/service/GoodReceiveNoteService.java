@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface GoodReceiveNoteService {
     public GoodReceiveNoteDto save(GoodReceiveNoteDto dto);
     public List<GoodReceiveNoteDto> findAll();
