@@ -1,5 +1,6 @@
 package com.easyshopaccount.easyshopaccount.goodreceivenotedetails.model;
 
+import com.easyshopaccount.easyshopaccount.goodreceivenote.model.GoodReceiveNote;
 import com.easyshopaccount.easyshopaccount.product.model.ProductInfo;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,7 @@ public class GrnDetails {
     private ProductInfo productInfo;
     private double quantity;
     private BigDecimal price;
+    @ManyToOne
 
+    private GoodReceiveNote goodReceiveNote;
 }
