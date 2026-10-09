@@ -10,5 +10,4 @@ import java.util.Optional;
 @Repository
 public interface GoodReceiveNoteRepository extends JpaRepository<GoodReceiveNote,Long> {
     Optional<GoodReceiveNote> findByGRNNumber(String grnNumber);
-    List<GoodReceiveNote> findByProductInfo_id(long id);
 }

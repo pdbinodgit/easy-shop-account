@@ -5,6 +5,8 @@ import com.easyshopaccount.easyshopaccount.goodreceivenote.dto.GoodReceiveNoteDt
 import com.easyshopaccount.easyshopaccount.goodreceivenote.model.GoodReceiveNote;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.repository.GoodReceiveNoteRepository;
 import com.easyshopaccount.easyshopaccount.goodreceivenote.service.GoodReceiveNoteService;
+import com.easyshopaccount.easyshopaccount.goodreceivenotedetails.dto.GrnDetailsDto;
+import com.easyshopaccount.easyshopaccount.goodreceivenotedetails.model.GrnDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -66,10 +68,18 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
         GoodReceiveNoteDto dto=new GoodReceiveNoteDto();
         dto.setId(note.getId());
         dto.setGRNNumber(note.getGRNNumber());
-        dto.setPrice(note.getPrice());
-        dto.setQuantity(note.getQuantity());
         dto.setVendorInfo(note.getVendorInfo());
-        dto.setProductInfo(note.getProductInfo());
+        List<GrnDetailsDto> grnDetailsDtos=new ArrayList<>();
+        for (GrnDetails details:note.getGrnDetailsList()){
+            GrnDetailsDto grnDetailsDto=new GrnDetailsDto();
+            grnDetailsDto.setGrnNumber(details.getGrnNumber());
+            grnDetailsDto.setId(details.getId());
+            grnDetailsDto.setPrice(details.getPrice());
+            grnDetailsDto.setProductInfo(details.getProductInfo());
+            grnDetailsDto.setQuantity(details.getQuantity());
+            grnDetailsDtos.add(grnDetailsDto);
+        }
+        dto.setGrnDetailsDtos(grnDetailsDtos);
         return dto;
     }
 
@@ -77,10 +87,8 @@ public class GoodReceiveNoteServiceImpl implements GoodReceiveNoteService {
         GoodReceiveNote note=new GoodReceiveNote();
         note.setId(dto.getId());
         note.setGRNNumber(dto.getGRNNumber());
-        note.setPrice(dto.getPrice());
-        note.setQuantity(dto.getQuantity());
         note.setVendorInfo(dto.getVendorInfo());
-        note.setProductInfo(dto.getProductInfo());
+
         return note;
     }
 }

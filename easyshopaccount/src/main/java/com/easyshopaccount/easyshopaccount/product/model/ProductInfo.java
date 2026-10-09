@@ -22,5 +22,4 @@ public class ProductInfo {
     private BigDecimal price;
     private Integer quantity;
 
-    private
 }
